@@ -1,15 +1,10 @@
 ###### npm install serverless@2
 
-<<<<<<< HEAD
 service: myserverlessproject
-=======
-service: myserverlessproject2
->>>>>>> f3befa74d504f335fb8f6d392269b62093d4ad69
 frameworkVersion: "2"
 
 provider:
   name: aws
-<<<<<<< HEAD
   runtime: nodejs18.x
   profile: nitish-serverless
   # tracing:
@@ -210,62 +205,3 @@ plugins:
 
 package:
   individually: true
-=======
-  runtime: nodejs20.x
-  profile: nitish-serverless
-  tracing:
-    lambda: true
-  timeout: 90
-  logRetentionInDays: 30
-  versionFunctions: false
-  region: us-east-1
-  environment:
-    tableName: ${self:custom.tableName}
-  iamRoleStatements:
-    - Effect : Allow
-      Action:
-        - dynamodb:*
-      Resource: '*'
-
-custom:
-  tableName: WebsocketUses
-
-functions:
-  websocket-connect:
-    handler: lambdas/websockets/connect.handler
-    events:
-      - websocket:
-            route: $connect
-
-  websocket-disconnect:
-    handler: lambdas/websockets/disconnect.handler
-    events:
-      - websocket:
-            route: $disconnect
-
-  websocket-default:
-    handler: lambdas/websockets/default.handler
-    events:
-      - websocket:
-            route: $default
-
-  websocket-message:
-    handler: lambdas/websockets/message.handler
-    events:
-      - websocket:
-            route: message
-
-resources: 
-  Resources:
-    WebsocketUserTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:custom.tableName}
-        AttributeDefinitions:
-          - AttributeName: ID
-            AttributeType: S
-        KeySchema:
-          - AttributeName: ID
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
->>>>>>> f3befa74d504f335fb8f6d392269b62093d4ad69
